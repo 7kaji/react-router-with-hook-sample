@@ -13,14 +13,14 @@ import queryString from 'query-string';
 const Hello = () => {
   const history = useHistory();
   return (
-    <div>
+    <>
       <h1>Hello</h1>
       <button
         onClick={() => history.push('/hello/react-router?message=hooks#test')}
       >
         Next
       </button>
-    </div>
+    </>
   );
 }
 
@@ -30,15 +30,17 @@ const HelloSomeone = () => {
   const { name } = useParams();
   console.log(queryString.parse(location.search));
   return (
-    <div>
+    <>
       <h1>Hello {name} !</h1>
       <p>pathname: {location.pathname}</p>
       <p>search: {location.search}</p>
       <p>hash: {location.hash}</p>
       <button onClick={() => history.goBack()}>Go Back</button>
-    </div>
+    </>
   );
 }
+
+const NotFound = () => <h1>Not Found</h1>;
 
 const App = () => {
   return (
@@ -46,6 +48,7 @@ const App = () => {
       <Switch>
         <Route path="/" exact component={Hello} />
         <Route path="/hello/:name" exact component={HelloSomeone} />
+        <Route exact component={NotFound} />
       </Switch>
     </Router>
   );
