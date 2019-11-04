@@ -46,9 +46,15 @@ const App = () => {
   return (
     <Router>
       <Switch>
-        <Route path="/" exact component={Hello} />
-        <Route path="/hello/:name" exact component={HelloSomeone} />
-        <Route exact component={NotFound} />
+        <Route path="/" exact>
+          <Hello />
+        </Route>
+        <Route path="/hello/:name" exact>
+          <HelloSomeone />
+        </Route>
+        <Route>
+          <NotFound />
+        </Route>
       </Switch>
     </Router>
   );
